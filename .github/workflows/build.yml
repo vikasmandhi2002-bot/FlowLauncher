@@ -11,6 +11,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Normalize Project Structure
+        run: |
+          if [ -d ".github/workflows/app" ]; then
+            mkdir -p app
+            cp -rn .github/workflows/app/* app/
+          fi
+          ls -la
+          ls -la app/ || true
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
